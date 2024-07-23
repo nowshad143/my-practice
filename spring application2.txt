@@ -1,0 +1,138 @@
+SPCONFIG.XML
+>>>>>>>>>>>>>>>
+<?xml version="1.0" encoding="UTF-8"?>
+<beans  
+    xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+    xmlns:p="http://www.springframework.org/schema/p"  
+    xsi:schemaLocation="http://www.springframework.org/schema/beans  
+               http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">  
+  
+<bean  class=" com.student.StudentCollege" id="id1">  
+<property name="studentNames" >
+<list>
+<value>Nowshad</value>
+<value>AnilAnna</value>
+<value>Lakshmana</value>
+<value>Parveen</value>
+</list>
+</property> 
+<property name="studentRollNumbers" >
+<set>
+<value>101</value>
+<value>102</value>
+<value>103</value>
+<value>104</value>
+</set>
+</property>  
+<property name="branchDetails" >
+<map>
+<entry key="CSE" value="120"></entry>
+<entry key="MECH" value="160"></entry>
+<entry key="ECE" value="180"></entry>
+<entry key="EEE" value="130"></entry>
+</map>
+
+</property>
+
+
+</bean>  
+  
+</beans>  
+
+Student Class.java
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+package com.student;
+
+import java.util.*;
+
+public class StudentCollege 
+{
+	private List<String>studentNames;
+	private Set<Integer>studentRollNumbers;
+	private Map<String,Integer>branchDetails;
+	private Properties branchInformation;
+	public StudentCollege() {
+		super();
+	}
+	public List<String> getStudentNames() {
+		return studentNames;
+	}
+	public void setStudentNames(List<String> studentNames) {
+		this.studentNames = studentNames;
+	}
+	public Set<Integer> getStudentRollNumbers() {
+		return studentRollNumbers;
+	}
+	public void setStudentRollNumbers(Set<Integer> studentRollNumbers) {
+		this.studentRollNumbers = studentRollNumbers;
+	}
+	public Map<String, Integer> getBranchDetails() {
+		return branchDetails;
+	}
+	public void setBranchDetails(Map<String, Integer> branchDetails) {
+		this.branchDetails = branchDetails;
+	}
+	public Properties getBranchInformation() {
+		return branchInformation;
+	}
+	public void setBranchInformation(Properties branchInformation) {
+		this.branchInformation = branchInformation;
+	}
+	public void printStudentNames() {
+		System.out.println("=====print Student Names=====");
+		
+		  for(String name : studentNames) 
+		  { 
+	System.out.println(name);
+			  }
+		 
+		
+	}
+		public void printStudentRollNumbers() {
+			System.out.println("=====print Student Roll Numbers=====");
+			for(int rollno : studentRollNumbers)
+			{
+				System.out.println(rollno);
+			}
+		}
+		public void printBranchDetails() {
+			System.out.println("=====print Student Branch Details=====");
+			for(Map.Entry<String,Integer>branch:branchDetails.entrySet())
+			{
+				System.out.println(branch);
+			}
+		}
+		
+		
+	}
+
+Main.java or test.java
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+package com.student;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+/**
+ * Hello world!
+ *
+ */
+public class App 
+{
+    public static void main( String[] args )
+    {
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("spconfig.xml");
+        StudentCollege s = (StudentCollege)ctx.getBean("id1");
+       s.printStudentNames();
+       s.printStudentRollNumbers();
+       s.printBranchDetails();
+       
+    }
+}
+
+	
+	
+	
+
